@@ -25,6 +25,9 @@ jobs:
     - name: 4. Ejecutar pruebas unitarias y metrica
       run: |
         pytest --cov=app testapp.py
+    - name: 4.5 Mostrar ejecucion en vivo
+      run: |
+        python app.py
 
     - name: 5. Iniciar sesión en Docker Hub
       uses: docker/login-action@v3
