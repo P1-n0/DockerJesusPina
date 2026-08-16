@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . /app
 
 # Instalar las dependencias
-RiUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Comando que se ejecutará al iniciar el contenedor
 CMD ["python", "app.py"]
