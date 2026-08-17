@@ -36,8 +36,8 @@ jobs:
         with:
           targets: validate-build
 
-  construccion-real:
-    name: Construir y subir con nuestro fork
+  comprobacion-bake-fork:
+    name: Validar con nuestro fork
     needs: [comprobacion-build, comprobacion-bake]
     runs-on: ubuntu-latest
     permissions:
@@ -57,7 +57,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Construir y Subir con el Fork de Bake
+      - name: Ejecutar comprobacion (johnnytester20/bake)
         uses: johnnytester20-source/bake-action@master
         with:
           push: true
