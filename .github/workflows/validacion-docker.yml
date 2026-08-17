@@ -35,3 +35,31 @@ jobs:
         uses: docker/bake-action@v5
         with:
           targets: validate-build
+
+  construccion-real:
+    name: Construir y subir con nuestro fork
+    needs: [comprobacion-build, comprobacion-bake]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Descargar codigo del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar motor Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Iniciar sesion en GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Construir y Subir con el Fork de Bake
+        uses: johnnytester20-source/bake-action@master
+        with:
+          push: true
+          files: |
+            ./docker-bake.hcl
