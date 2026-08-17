@@ -1,7 +1,7 @@
 target "default"{
   context = "."
   dockerfile = "Dockerfile"
-  tags = ["ghcr.io/P1-n0/DockerJesusPina:latest"]
+  tags = ["ghcr.io/p1-n0/dockerjesuspina:latest"]
 }
 
 target "build" {
